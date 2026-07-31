@@ -1,0 +1,2 @@
+## The Fourier Transform
+The Fourier transform is a tool for decomposing a complex wave/signal into simples sinusoids in the form you probably learned in highschool: A·cos(2πft + φ). These deconstructed "simpler" waves can be added together to make the original wave. This works because any reasonable signal can be expressed as different waves of different amplitudes, frequencies and phases. In actual practice, signals need to satisfy certain conditions for the fourier transform to be effective, but thats's out of scope for now. 
