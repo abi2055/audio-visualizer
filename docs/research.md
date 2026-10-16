@@ -24,6 +24,11 @@ Aliasing is the phenomena when the frequency goes above that max (fs/2). That so
 
 f_alias = |f - fs * round(f / fs)| 
 
+### relation to audio viz: Port Audio
+PortAudio gives you *buffers*. I won't get samples one at a time, I'll get it in chunks of N samples per call: duration = N / fs
+
+Example: N = 1024 samples, 48 Khz gives use 1024 / 48 = 21ms -> 47s, you would get 47 samples per chunk per second 
+
 
 
 
