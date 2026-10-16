@@ -29,6 +29,6 @@ PortAudio gives you *buffers*. I won't get samples one at a time, I'll get it in
 
 Example: N = 1024 samples, 48 Khz gives use 1024 / 48 = 21ms -> 47s, you would get 47 samples per chunk per second 
 
-
+## Complex Numbers (Review)
 
 
