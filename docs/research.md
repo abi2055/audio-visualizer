@@ -1,2 +1,29 @@
-## The Fourier Transform
+## Fourier Transform Intuition 
 The Fourier transform is a tool for decomposing a complex wave/signal into simples sinusoids in the form you probably learned in highschool: A·cos(2πft + φ). These deconstructed "simpler" waves can be added together to make the original wave. This works because any reasonable signal can be expressed as different waves of different amplitudes, frequencies and phases. In actual practice, signals need to satisfy certain conditions for the fourier transform to be effective, but thats's out of scope for now. 
+
+## Sampling and Aliasing 
+sound is air pressure. In order for a microphone to capture that sound it represents it as a voltage, a computer cant record a continous wave and instead records small instants over time.
+
+### Sample: 
+one measurement, a float to represent the sound at that instance
+
+### sample rate (fs): 
+how many measurements per second. A rate of 48000 Hz is one reading every 1/48000s = 0.02ms 
+
+### sample index / time : 
+t = n / fs (the same calculation above)
+
+### Turning a sine wave into samples: 
+a continous sine wave or tone in the form x(t) = sin(2πft) -> x[n] = sin(2πfn/fs)
+
+### One Rule: Nyquist
+To capture a frequency, you need at least 2 samples per cycle which makes logical sense since how do you even describe the sound with only 1. You need a sample roughly at the peak and trough. So that means the highest frequency you can represent is f_max = fs / 2
+
+### Aliasing
+Aliasing is the phenomena when the frequency goes above that max (fs/2). That sound doesnt dissapear. This is not wanted needless to say, makes the sound sci fi. The samples line up with a lower fake frequency instead:
+
+f_alias = |f - fs * round(f / fs)| 
+
+
+
+
