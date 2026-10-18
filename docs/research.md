@@ -40,3 +40,27 @@ A *complex number* is written as: z = a + b*i
 Imagine a and b as a coordinate. As an arrow on a 2D plane, from the origin to the point (a,b). The horizontal (x or a) axis is real, and the (y or b) is imaginary. 
 
 *magnitude of the arrow*: |z| = sqrt(a^2 + b^2)
+
+for example - 3 + 4i is 9 + 15 = sqrt(25) = 5
+
+*phase (angle) - which way the arrow points*: θ = a*tan2(b, a) = 53 degrees (for the above example)
+
+### Euler's formula: arrows as angles
+An arrow of length 1 at angle θ can be wrriten as: e^(iθ) = cos(θ) + i*sin(θ)
+
+and z = r * e^(iθ)
+
+### connecting to sound 
+Let θ grow with time: e^(i·2π·f·t) - This represents an arrow spinning in a circle, f times per second
+
+If you only take that arrows horizontal position. That shadow traces out cos(2πft), a sine wave. So a sine wave is pretty much just a spinning arrow. That's why fft speaks in complex numbers. 
+
+### Math Hint
+when you multiple two complex numbers
+- the magnitudes multiple 
+- the angles add up
+- (r₁·e^(iθ₁)) · (r₂·e^(iθ₂)) = (r₁·r₂) · e^(i(θ₁+θ₂))
+
+This is the big trick inside the DFT: to test whether your signal contains frequency f, multiply it by an arrow spinning backwards at f, then add it up.
+- if f is in the signal, they cancel out. The arrows combine providing a bigger magnitude
+- if f is not in the signal, the magnitude ends up being near 0
