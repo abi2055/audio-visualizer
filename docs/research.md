@@ -30,5 +30,13 @@ PortAudio gives you *buffers*. I won't get samples one at a time, I'll get it in
 Example: N = 1024 samples, 48 Khz gives use 1024 / 48 = 21ms -> 47s, you would get 47 samples per chunk per second 
 
 ## Complex Numbers (Review)
+A simple number can describe how big something is. When the FFT (fourier transform) looks at a frequency in the audio, it needs two things: how strong that frequency is as well as where it is in the cycle (the phase). A complex number is just an easy way to connect those two packing into one number. 
 
+### How it looks
+A *complex number* is written as: z = a + b*i 
+- a is the real part and b is the imaginary part
+- i is defined as i^2 = -1
 
+Imagine a and b as a coordinate. As an arrow on a 2D plane, from the origin to the point (a,b). The horizontal (x or a) axis is real, and the (y or b) is imaginary. 
+
+*magnitude of the arrow*: |z| = sqrt(a^2 + b^2)
