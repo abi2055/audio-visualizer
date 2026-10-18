@@ -64,3 +64,5 @@ when you multiple two complex numbers
 This is the big trick inside the DFT: to test whether your signal contains frequency f, multiply it by an arrow spinning backwards at f, then add it up.
 - if f is in the signal, they cancel out. The arrows combine providing a bigger magnitude
 - if f is not in the signal, the magnitude ends up being near 0
+
+## DIscrete Fourier Transform (DFT)
