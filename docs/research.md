@@ -65,4 +65,9 @@ This is the big trick inside the DFT: to test whether your signal contains frequ
 - if f is in the signal, they cancel out. The arrows combine providing a bigger magnitude
 - if f is not in the signal, the magnitude ends up being near 0
 
-## DIscrete Fourier Transform (DFT)
+## Discrete Fourier Transform (DFT)
+
+We have a N sized buffer of the sound's shape over time. The DFT turns that into how much of each frequency is in it. Providing the buffer to a DFT, outputs a list of frequency "bins", each holding a complex number and the number's magnitude tells you how strong that frequency is.
+
+### The formula
+![alt text](image.png)
