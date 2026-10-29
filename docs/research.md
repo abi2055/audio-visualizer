@@ -107,3 +107,12 @@ f = k * fs / N
 Example: fs = 48000, N = 1024, for bin k = 1 -> ~47 Hz, then bin k = 2 -> ~94Hz, so each bin is ~47Hz apart 
 
 This concept is frequency resolution which would need to be tuned. A bigger N gives finer detail but a longer buffer, which means more delay. 
+
+### We only care about half the bins
+For real audio, bins of N/2 (N being the number of samples) are a mirror of the ones below. Thats why k = 3 is the same as k = 1 in the example. Bins from 0 to N/2 are the only ones needed and bin N/2 sits exactly at fs/2, which is the Nyquist limit. 
+
+## Cant directly use a complex number
+Each bin is a complex number, for the visualizer I need:
+- maginitude = |X(k)| 
+- To get back the original waves amplitude, I just need to multiply by 2/N on k
+- the phase says where in the cycle the wave started
