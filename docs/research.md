@@ -97,3 +97,13 @@ Test k = 2. The arrow is [1, -1, 1, -1] -> 1 + 0 − 1 + 0 = 0. Nothing there
 
 Test k = 3 -> The result is 2 again
 
+### The results
+- Bin means the real frequency
+- k does not mean hz, it means k number of cycles in the buffer, but that can be converted to hz
+- X(k) is how much of that frequency is present in the sound
+
+### k to hz
+f = k * fs / N
+Example: fs = 48000, N = 1024, for bin k = 1 -> ~47 Hz, then bin k = 2 -> ~94Hz, so each bin is ~47Hz apart 
+
+This concept is frequency resolution which would need to be tuned. A bigger N gives finer detail but a longer buffer, which means more delay. 
