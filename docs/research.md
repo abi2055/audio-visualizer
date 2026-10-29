@@ -116,3 +116,5 @@ Each bin is a complex number, for the visualizer I need:
 - maginitude = |X(k)| 
 - To get back the original waves amplitude, I just need to multiply by 2/N on k
 - the phase says where in the cycle the wave started
+
+## Spectral Leakage and Windowing 
