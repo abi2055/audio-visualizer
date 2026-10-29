@@ -71,3 +71,29 @@ We have a N sized buffer of the sound's shape over time. The DFT turns that into
 
 ### The formula
 ![alt text](image.png)
+
+Piece by piece:
+- x(n): the samples. n is the sample number (0, 1, 2 .. N-1)
+- k: which frequency being tested. It's the "bin" number
+- j: or i, its the complex number but not to get it confused with current i
+- e^(-j2πkn/N): the spinning arrow coming from complex numbers
+- Σ: add everything up
+- X(k): the answer for "bin"/frequency k, one complex number
+
+In plain English it would sound like: for each frequency k, multiply every sample by the backwards-spinning arrow, then add the results. Basically this would give me what cancels out, thereby proving whats in the sound.
+
+Example with N = 4:
+
+signal: x = [1, 0, -1, 0]. This is a cosine wave. 
+*Reminder:* a buffer is a smaller handful of samples from a continous sample taken from the microphone 
+
+so in the example, exactly 1 cycle inside the buffer with the 4 discrete values.
+
+Test k = 1. The arrow at each step is [1, -j, -1, j], a quarter-turn backwards each samples -> 1·1 + 0·(-j) + (-1)·(-1) + 0·j = 2. Big, so the frequency is there.
+
+Test k = 0. The arrow is [1, 1, 1, 1], so the arrow doesn't spin at all -> 1 + 0 − 1 + 0 = 0. Nothing there. (Bin 0 measures the "average level," also called DC.)
+
+Test k = 2. The arrow is [1, -1, 1, -1] -> 1 + 0 − 1 + 0 = 0. Nothing there
+
+Test k = 3 -> The result is 2 again
+
