@@ -118,3 +118,11 @@ Each bin is a complex number, for the visualizer I need:
 - the phase says where in the cycle the wave started
 
 ## Spectral Leakage and Windowing 
+
+## The problem 
+The DFT pretends that the buffer repeats cleanly forever, stitched end to end
+- If the buffer holds a whole number of cycles like [1, 0, -1, 0] which is 1 full cycle, the ends connect smoothly to the start, to create a clean sound
+- If the buffer holds a partial cycle like 1.5 cycles, the end won't match up with the start. There's a sudden jump where the copies meet. 
+
+A sudden jump would sound like a click and the DFT would pick that up. A click contains alot of frequencies that arent apart of the actual sound. That fake energy spreading into other bins is the leakage. 
+
