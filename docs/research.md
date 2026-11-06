@@ -119,10 +119,45 @@ Each bin is a complex number, for the visualizer I need:
 
 ## Spectral Leakage and Windowing 
 
-## The problem 
+### The problem 
 The DFT pretends that the buffer repeats cleanly forever, stitched end to end
 - If the buffer holds a whole number of cycles like [1, 0, -1, 0] which is 1 full cycle, the ends connect smoothly to the start, to create a clean sound
 - If the buffer holds a partial cycle like 1.5 cycles, the end won't match up with the start. There's a sudden jump where the copies meet. 
 
 A sudden jump would sound like a click and the DFT would pick that up. A click contains alot of frequencies that arent apart of the actual sound. That fake energy spreading into other bins is the leakage. 
+
+*Real music almost never fits the buffer perfectly, so every frame leaks unless you fix it*
+
+An example of this (N = 4, 1.5 cycles)
+signal: x [1, -0.707, 0, 0.707]. That's the cosine that does 1.5 cycles in the buffer, so its true frequency is between bin 1 and bin 2
+- k = 0 -> 1 (fake)
+- k = 1 -> 1.73
+- k = 2 -> 1
+
+There's leakage. Compared to the 1 cycle example above, which had one clean bin. Here the energy is smeared across every bin. 
+
+### The Solution
+Before the DFT, you multiply the buffer by a window - a curve that is 0 at the edges and 1 in the middle. If both ends fade to 0, there will be no jump between cycles. 
+
+#### Hann Window 
+w[n] = 0.5 * (1 - cos(2(pi)*n / (N -1)))
+
+visualized its a bell curve, 0 on the edges and 1 in the middle 
+
+you use it by just multiplying each sample by it:
+windowed[n] = x[n] * w[n]
+
+Not using a window, image a rectangle, the sound just cuts to 0 at the endpoint
+
+#### No Hann
+![alt text](image-1.png)
+
+#### Hann
+![alt text](image-2.png)
+
+### The cost
+1. The peak wave gets a little wider. A pure tone now spills into its bin plus its neighbours on each side. It won't be noticeable in the visualizer 
+2. The signal gets faded out, so the magnitudes shrink by about half which makes sense since the average is 0.5 across all points. Fixed by dividing by the window's sum instead of N. 
+
+
 
