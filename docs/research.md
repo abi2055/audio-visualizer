@@ -159,5 +159,9 @@ Not using a window, image a rectangle, the sound just cuts to 0 at the endpoint
 1. The peak wave gets a little wider. A pure tone now spills into its bin plus its neighbours on each side. It won't be noticeable in the visualizer 
 2. The signal gets faded out, so the magnitudes shrink by about half which makes sense since the average is 0.5 across all points. Fixed by dividing by the window's sum instead of N. 
 
+A = 2 * |X(k)| / (sum of all w[n]) -> for Hann, that sum is about N/2
+
+*In summary, I'm trading some sharpness for a lot less noise*
+
 
 
