@@ -3,10 +3,9 @@
 
 // this code is not runnable, only for example purposes
 int main() {
-    // run the hann windowing on start once
     const int N = 1024;
 
-    // Using the window across n samples
+    // calculating the window to then be applied to the samples
     std::vector<double> hann(N);
     double hannSum = 0;
     for (int n = 0; n < N; n++) {
