@@ -1,0 +1,2 @@
+### std::clamp(value, low, high)
+this function keeps the values passed in within that low, high range. If that value is too big it gets pushed down to high and if that value is too low it gets pushed up to low.

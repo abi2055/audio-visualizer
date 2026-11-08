@@ -182,5 +182,37 @@ dB = 20 * log10(A)
 
 a log scale like this is basically magnitude of an earthquake, "how many 10x's is this" and multiplying by 20 is the convention for audio 
 
+| Amplitude | dB |
+|-------|:--------:|
+| 1.0  | 0 dB   |
+| 0.1  | -20 dB |
+| 0.01  | -40 dB |
+| 0.001  | -60 dB |
+
+So every 10x quieter = 20 dB lower. (Halving the amplitude is about -6 dB)
+
+*Two Notes*
+- 0 dB is the max, not silence and verything quieter is negative. This is because samples would max out 1.0.
+- log10(0) = -(inf), so a perfectly silent bin would break the math but I can just add a tiny number to it: log10(A + 1e-12)
+
+### from dB to bar height
+Need to pick a floor value, so just the quitest value we would want to show, like -80 dB. Anything below it is a bar height of 0. Then the range would stretch from -80 to 0 dB onto bar heights 0 to 1.
+
+height = (dB - floor) / (0 - floor)
+
+| Bin  | Amplitude     | dB | Bar Height
+|-------|:--------:|------:|------:|
+| 21  | 0.93   | -0.6    | 0.99      |
+| 19  | 0.027 | -31.5    | 0.61       |
+| 30  | 0.0004 | -68    | 0.15     |
+| 5  | 0.0004 | -80    | 0       |
+
+The quiet stuff would show up as smaller bars instead of dissapearing 
+
+The floor is basically a knob that can be played with. Setting it higher would make background noise dissapear, but quiet detail goes too. Setting it lower would show more details, but more noise flickers.
+
+
+
+
 
 
