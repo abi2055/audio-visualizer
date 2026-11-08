@@ -163,5 +163,24 @@ A = 2 * |X(k)| / (sum of all w[n]) -> for Hann, that sum is about N/2
 
 *In summary, I'm trading some sharpness for a lot less noise*
 
+## Decibals
+
+### There's a problem 
+The Hann output for 1000 Hz looks like:
+| Bin  | Amplitude     | Bar Height |
+|-------|:--------:|------:|
+| 21  | 0.93   | 93% tall    |
+| 19  | 0.027 | 3% tall    |
+| 30  | 0.0004 | 0% tall    |
+
+Real music has "quiet" hi-hats and "loud" kick drum at the same time, so the quiet sounds would be invisible (0%, 3%)
+
+Actual ears hear ratios. Something 10x quieter doesnt sound 10x quieter, its more like just a step down. So you need a way to scale these sounds equally with their true loudness in reference to human listening. 
+
+### The Formula for that
+dB = 20 * log10(A)
+
+a log scale like this is basically magnitude of an earthquake, "how many 10x's is this" and multiplying by 20 is the convention for audio 
+
 
 
