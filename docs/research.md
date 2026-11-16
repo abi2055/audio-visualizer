@@ -260,3 +260,4 @@ Fixes:
 DFT formula flipped: k = f * N / fs
 Use: when you want to find the nearest usable bin, the output is the bin number (rounded up for my specific case) 
 
+## Smoothing
