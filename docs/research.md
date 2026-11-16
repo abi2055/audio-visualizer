@@ -233,3 +233,12 @@ In the real world, count how many bins land in each ocatave:
 | 640-1280Hz  | vocals | ~14    |
 | 10240-20480Hz | cymbals, hiss | ~218    |
 
+From an audio viz stand point, if we were to do draw one bar per bin, more than half the screen would just be cymbals. The rest of the sound would be crammed into a sliver on the left side of the screen.
+
+### The fix to that 
+Instead of one bar per bin, we would make 30 total bars, where each bar would cover a range that's a fixed amount bigger than the one before. Low bars would cover a few Hz, and high bars cover thousands of Hz. This would make it so each bar ends up covering the same musical width.
+
+The formula to get the edge of each bar:
+edge_i = fMin * (fMax / fMin)^(i / B)
+
+So what that means in plain english is that you would start at fMin, and every edge is the previous times the same number over and over again
