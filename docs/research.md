@@ -211,8 +211,25 @@ The quiet stuff would show up as smaller bars instead of dissapearing
 
 The floor is basically a knob that can be played with. Setting it higher would make background noise dissapear, but quiet detail goes too. Setting it lower would show more details, but more noise flickers.
 
+## Log Frequency Bands
 
+The bins that are set uo dont match what humans hear. Each bin is spaced 47Hz apart (fs = 48000, N = 1024)
 
+Bin 1: 47Hz
+Bin 2: 94Hz
+Bin 3: 141Hz
+...
 
+The one thing about human ears is that we hear rations. We hear it by doubling. So going from 100 to 200 Hz sounds like the same jump as 1000 to 2000 Hz. A doubling is called an *Ocatave*
 
+This is a good analogy. A piano has the same 12 keys, even though the high octaves cover way more Hz than the low ones. 
+
+In the real world, count how many bins land in each ocatave: 
+
+| Octave | What lives there | Bins
+|-------|:--------:|------:|
+| 20-40Hz  | deep bass   | 0    |
+| 80-160Hz | kick drum | ~2    |
+| 640-1280Hz  | vocals | ~14    |
+| 10240-20480Hz | cymbals, hiss | ~218    |
 
