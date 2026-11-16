@@ -255,3 +255,8 @@ Fixes:
 1. A Bigger sample size N: N = 4096 makes bins 11.7 Hz apart, so the bass bars exist. The cost would be a slower response.
 2. Start at 40Hz instead of 20Hz. Not much going on below 20Hz. 
 3. Using the nearest bin for ay bar that's still empty
+
+### Hz -> Bin formula
+DFT formula flipped: k = f * N / fs
+Use: when you want to find the nearest usable bin, the output is the bin number (rounded up for my specific case) 
+
