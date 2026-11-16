@@ -242,3 +242,16 @@ The formula to get the edge of each bar:
 edge_i = fMin * (fMax / fMin)^(i / B)
 
 So what that means in plain english is that you would start at fMin, and every edge is the previous times the same number over and over again
+
+This would make low bars narrow, and high bars would swallow a bunch of bins. Which is what we want for human hearing. 
+
+Turning the many bins into one bar:
+For each bar, looking at all the bins inside its range and taking the biggest one. That would become the bar's amplitude.
+
+### What to do with emty bass bars
+Bar 0 (20-25 Hz) has no bins, because bins are 47hz apart in this scenario and thats a small 5hz gap. A small N (samples) means less fine bins.
+
+Fixes:
+1. A Bigger sample size N: N = 4096 makes bins 11.7 Hz apart, so the bass bars exist. The cost would be a slower response.
+2. Start at 40Hz instead of 20Hz. Not much going on below 20Hz. 
+3. Using the nearest bin for ay bar that's still empty
