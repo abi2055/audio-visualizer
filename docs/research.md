@@ -286,3 +286,25 @@ Example: a bar sitting at 0 gets hit by a loud sound (reading = 1), with α - 0.
 | 4 | 	0.8 × 0.49 + 0.2 × 1 | 0.59    |
 
 The result is that the bar would glide up smoothly instead of snapping.
+
+### We want a rist fast, fall slow action (attack and release)
+one α for both the rise and the fall feels bad, becasue the kick drum hits late. The trick that would make a visualizer good is a different α for each direction:
+- Attack (rising action): small α like 0.3, so the bar jumps up quickly and hits land on time 
+- Release (falling action): big α like 0.9, so the bar drifts down slowly 
+
+### Now it needs to look the same on every computer 
+α is applied once per frame that is captured. A 144 fps monitor applies it 144 times per second, while the a rasberry pi display at 30 fps applies it 30 times. So the same α would look much smoother on the faster monitor. The fix would be to calculate α from the time since the last frame:
+
+α = exp(−dt / τ)
+- dt = seconds since the last frame (about 0.0167 at 60fps)
+- τ = the smoothing time in seconds, roughly "how long until the bar is about two-thirds of the way to the new reading"
+
+τ gets picked once, in seconds, and the bars behave the same on any screen. problem solved.
+
+Example:
+- attack τ = 0.02s -> α ~ 0.43
+- release τ = 0.30s -> α ~ 0.95
+
+And the number that gets the smoothing is the final bar height, the 0 to 1 number. Thats what's displayed on screen so thats what gets the smoothing.
+
+
