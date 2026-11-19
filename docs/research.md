@@ -263,3 +263,26 @@ Use: when you want to find the nearest usable bin, the output is the bin number 
 ## Smoothing
 New problem, theres flicker. At every frame, the fft takes a new snapshot of the sound. But music changes very fast and there's going to be a bit a noise causing the bar's height to jump around from frame to frame. If we draw the raw heighte, the bars flicker and jitter. 
 
+### The fix would be to blend the old and new bars
+Each frame, we would move the bar part way through the next, for some overlap essentially 
+
+new_height = α · old height + (1 − α) · this frame's reading
+
+α is a number between 0 and 1. It means "how much of the old height to keep"
+- α = 0.8 means 80% of the old height and 20% of the new reading. That's smooth and slow.
+- α = 0 -> no smoothing, flicker unchanged
+- α = 1 -> very slow and laggy, slow transitions
+
+This is called an *exponential moving average*
+
+Example: a bar sitting at 0 gets hit by a loud sound (reading = 1), with α - 0.8
+
+| Frame | Calculation | Height
+|-------|:--------:|------:|
+| 0  | starting point   | 0    |
+| 1 | 0.8 × 0 (from before) + 0.2 × 1 | 0.20   |
+| 2  | 0.8 × 0.20 + 0.2 × 1 | 0.36    |
+| 3 | 	0.8 × 0.36 + 0.2 × 1 | 0.49    |
+| 4 | 	0.8 × 0.49 + 0.2 × 1 | 0.59    |
+
+The result is that the bar would glide up smoothly instead of snapping.
