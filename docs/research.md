@@ -261,3 +261,5 @@ DFT formula flipped: k = f * N / fs
 Use: when you want to find the nearest usable bin, the output is the bin number (rounded up for my specific case) 
 
 ## Smoothing
+New problem, theres flicker. At every frame, the fft takes a new snapshot of the sound. But music changes very fast and there's going to be a bit a noise causing the bar's height to jump around from frame to frame. If we draw the raw heighte, the bars flicker and jitter. 
+
